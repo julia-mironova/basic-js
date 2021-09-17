@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha ./test/recursive-depth.test.js"
   },
   "repository": {
     "type": "git",
