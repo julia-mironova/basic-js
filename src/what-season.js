@@ -12,27 +12,41 @@ import { NotImplementedError } from "../extensions/index.js";
  *
  */
 export default function getSeason(date) {
-  let unswer = "Unable to determine the time of year!";
-  let mounth = date.getMonth() + 0;
-  //console.log(mounth);
-  switch (mounth) {
-    case mounth == 12 || mounth == 1 || mounth == 2:
-      unswer = "winter";
-      break;
-    case mounth == 3 || mounth == 4 || mounth == 5:
-      unswer = "spring";
-      break;
-    case mounth == 6 || mounth == 7 || mounth == 8:
-      unswer = "summer";
-      break;
-    case mounth == 9 || mounth == 10 || mounth == 11:
-      unswer = "autumn";
-      break;
-    default:
-      unswer = "Invalid date!";
+  console.log(`111 Date is ${date}`);
+  if (date === undefined) {
+    return "Unable to determine the time of year!";
   }
-  return unswer;
+  if (!(date instanceof Date)) {
+    throw Error("Invalid date!");
+  } else {
+    let mounth;
+    try {
+      mounth = date.getMonth();
+    } catch (e) {
+      throw Error("Invalid date!");
+    }
+    switch (mounth) {
+      case 0:
+      case 1:
+      case 11:
+        return "winter";
+      case 3:
+      case 2:
+      case 4:
+        return "spring";
+      case 6:
+      case 7:
+      case 5:
+        return "summer";
+      case 9:
+      case 10:
+      case 8:
+        return "autumn";
+      default:
+        throw Error("Invalid date!");
+    }
+  }
 }
-const date = new Date(1932, 1, 22);
+const date = () => new Date(); //winter
 
-console.log(getSeason(date));
+//console.log(getSeason(date));

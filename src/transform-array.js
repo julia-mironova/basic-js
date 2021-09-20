@@ -14,32 +14,45 @@ import { NotImplementedError } from "../extensions/index.js";
  *
  */
 export default function transform(arr) {
-  let arrWork = arr;
-  let arrTransform = [];
-  for (let i = 0; i < arrWork.length; i++) {
-    let elem = arrWork[i];
-    let elemNext = arrWork[i + 1];
-    let elemPrev = arrWork[i - 1];
-    if (typeof elem == "number") {
-      arrTransform.push(elem);
-    } else {
-      switch (elem) {
-        case "--discard-next":
-          delete arrTransform[elemNext];
-          break;
-        case "--discard-prev":
-          delete arrTransform[elemPrev];
-          break;
-        case "--double-prev":
-          arrTransform.push(elemPrev);
-          break;
-        case "--double-next":
-          arrTransform.push(elemNext);
-          break;
+  if (!Array.isArray(arr)) {
+    throw Error("'arr' parameter must be an instance of the Array!");
+  } else {
+    let arrWork = arr;
+    let arrTransform = [];
+    for (let i = 0; i < arrWork.length; i++) {
+      let elem = arrWork[i];
+      let elemNext = arrWork[i + 1];
+      let elemPrev = arrWork[i - 1];
+      if (
+        elem !== "--discard-next" &&
+        elem !== "--discard-prev" &&
+        elem !== "--double-prev" &&
+        elem !== "--double-next"
+      ) {
+        arrTransform.push(elem);
+      } else {
+        switch (elem) {
+          case "--discard-next":
+            delete arrTransform[elemNext];
+            break;
+          case "--discard-prev":
+            arrTransform.pop();
+            break;
+          case "--double-prev":
+            if (arrTransform.length > 0) {
+              arrTransform.push(elemPrev);
+            }
+            break;
+          case "--double-next":
+            arrTransform.push(elemNext);
+
+            break;
+        }
       }
     }
+
+    //console.log(arrWork);
+    return arrTransform;
   }
-  console.log(arrWork);
-  return arrTransform;
 }
-console.log(transform([3, 2, "--double-prev", 3, "--discard-prev", 4, 4]));
+console.log(transform(["--double-prev", 1, 2, 3]));
