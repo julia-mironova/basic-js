@@ -25,6 +25,5 @@ export default function countCats(matrix) {
       }
     }
   }
-  console.log(count);
   return count;
 }

@@ -11,8 +11,7 @@ import { NotImplementedError } from "../extensions/index.js";
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  *
  */
-//export default
-function getSeason(date) {
+export default function getSeason(date) {
   let unswer = "Unable to determine the time of year!";
   let mounth = date.getMonth() + 0;
   //console.log(mounth);

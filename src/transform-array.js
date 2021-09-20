@@ -13,8 +13,7 @@ import { NotImplementedError } from "../extensions/index.js";
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  *
  */
-//export default
-function transform(arr) {
+export default function transform(arr) {
   let arrWork = arr;
   let arrTransform = [];
   for (let i = 0; i < arrWork.length; i++) {

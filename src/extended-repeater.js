@@ -15,15 +15,7 @@ import { NotImplementedError } from "../extensions/index.js";
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-/*let {
-  repeatTimes,
-  separator = "+",
-  addition = 1,
-  additionRepeatTimes,
-  additionSeparator = "|",
-} = options;
-//export default
-function repeater(str, options) {
+export default function repeater(str, options) {
   let unswer = "";
   if (
     options.repeatTimes == undefined ||
@@ -36,7 +28,7 @@ function repeater(str, options) {
     let addition = "" + options.addition;
     unswer;
   }
-}*/
+}
 //console.log(repeater("la", { repeatTimes: 3 }));
 
 function repitAdd(str, sep, times) {

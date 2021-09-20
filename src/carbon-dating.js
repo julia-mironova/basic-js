@@ -18,8 +18,7 @@ const k = 0.693;
  * dateSample('WOOT!') => false
  *
  */
-//export default
-function dateSample(sampleActivity) {
+export default function dateSample(sampleActivity) {
   if (typeof +sampleActivity != "number") {
     return false;
   } else {
